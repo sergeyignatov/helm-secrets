@@ -65,7 +65,7 @@ _file_get() {
 _file_dec_name() {
     _basename="$(basename "${1}")"
     _hash="$(echo -n  "${1}" | md5sum | cut -d ' ' -f 1)"
-
+    >&2 echo "$1 {_hash}" >> /tmp/files
     if [ "${DEC_DIR}" != "" ]; then
         printf '%s/%s%s%s' "${DEC_DIR}" "${DEC_PREFIX}" "${_basename}" "${DEC_SUFFIX}"
     elif [ "${DECRYPT_SECRETS_IN_TMP_DIR}" = "true" ]; then
